@@ -19,12 +19,11 @@ install:
 	rm -rf "/usr/src/kuznyechik-kernel-"*
 	mkdir "/usr/src/kuznyechik-kernel-1.0"
 	cp -f *".c" "dkms.conf" "Makefile" "/usr/src/kuznyechik-kernel-1.0"
-	
 	-dkms add -m "kuznyechik-kernel" -v $(version)
 	dkms build -m "kuznyechik-kernel" -v $(version)
 	dkms install -m "kuznyechik-kernel" -v $(version)
 
 uninstall:
 	modprobe -r kuznyechik magma
-	rm -rf "/usr/src/kuznyechik-kernel-$(version)"
 	dkms remove "kuznyechik-kernel/$(version)" --all
+	rm -rf "/usr/src/kuznyechik-kernel-$(version)"
