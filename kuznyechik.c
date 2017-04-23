@@ -1,3 +1,40 @@
+/*
+ * Kuznyechik Cipher Module for Linux Kernel
+ * =========================================
+ *
+ * Copyright (c) 2015 Markku-Juhani O. Saarinen <mjos@iki.fi>
+ * Copyright (c) 2017 Vlasta Vesely <vlastavesely@protonmail.ch>
+ *
+ * ---------------------------------------------------------------------------
+ * This implementation is Saarinen's code modified in order to allow usage
+ * as Linux Kernel module. The original code can be found on Github:
+ * https://github.com/mjosaarinen/kuznechik/blob/master/kuznechik_128bit.c
+ *
+ * In order to use it as Kernel module, original SSE optimization has been
+ * replaced by operations on 64bit integers. Although it is slower than
+ * original version, it is still faster than (or equal to) another portable
+ * implementations we have tested.
+ * ---------------------------------------------------------------------------
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/mm.h>

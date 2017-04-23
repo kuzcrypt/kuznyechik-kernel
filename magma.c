@@ -1,8 +1,44 @@
+/*
+ * Magma Cipher Module for Linux Kernel
+ * ====================================
+ *
+ * Copyright (c) 2017  Vlasta Vesely <vlastavesely@protonmail.ch>
+ * Copyright (c) 1993  Colin Plumb
+ *
+ * ---------------------------------------------------------------------------
+ * Original source code (implementation of older standard - GOST 28147-89)
+ * has been placed in the public domain by its author and the source code
+ * can be found here: https://www.schneier.com/sccd/GOST-PLU.ZIP
+ *
+ * All subsequent changes in the code (kernel module API, S-boxes made already
+ * rotated, etc.) have been made under the MIT license.
+ * ---------------------------------------------------------------------------
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/mm.h>
 #include <linux/crypto.h>
 #include <linux/types.h>
+
 
 typedef struct {
 	uint32_t k[8];
