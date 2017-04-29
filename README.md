@@ -12,4 +12,4 @@ To uninstall, run `sudo make uninstall`.
 
 
 ## License
-This program is licensed under MIT license.
+This program is licensed under GPL license.
