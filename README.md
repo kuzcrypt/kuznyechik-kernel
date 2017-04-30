@@ -20,7 +20,7 @@ sudo cryptsetup luksFormat /dev/sdb --cipher=kuznyechik-xts-plain64 \
 	--key-size=512 --hash=whirlpool --verify-passphrase
 ```
 
-This command will format device `/dev/sdb` to a `LUKS` partition. Although Kuznyechik is a 256bit cipher, when using the `XTS` encryption mode (as used in example), you need to set `--key-size` to `512` (not just `256`) for this mode requires two different 256bit keys. Keys will be generated automatically and encrypted by another key being derived from your password. Keep in mind that your password is the weakest point of entire system so it should be long, unique, and as random as possible.
+This command will format device `/dev/sdb` to a `LUKS` partition. Although Kuznyechik is a 256-bit cipher, when using the `XTS` encryption mode (as used in example), you need to set `--key-size` to `512` (not just `256`) for this mode requires two different 256-bit keys. Keys will be generated automatically and encrypted by another key being derived from your password. Keep in mind that your password is the weakest point of entire system so it should be long, unique, and as random as possible.
 
 After successful format, you need to open new partition that has been created within that original one. Next step is to format it to your favorite file system. After format is done, you can close `cryptsetup`.
 
@@ -30,7 +30,7 @@ sudo mkfs.ext4 /dev/mapper/devname
 sudo cryptsetup luksClose devname
 ```
 
-If nothing have broken, you have `/dev/sdb` encrypted now; you can verify it by `hexdump` utility:
+If nothing have broken, you have `/dev/sdb` encrypted now; you can verify it with the `hexdump` utility:
 
 
 ```
