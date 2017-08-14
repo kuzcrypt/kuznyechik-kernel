@@ -16,7 +16,7 @@
 #endif
 
 
-static uint8_t cipher_test_key[64] = {
+static uint8_t cipher_test_key[32] = {
 	0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
 	0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
 	0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10,
@@ -182,7 +182,7 @@ int main (int argc, char **argv)
 	crypto_cipher_test("ecb(kuznyechik)", 32, 16, 0,  "7f679d90bebc24305a468d42b9d4edcd 7f679d90bebc24305a468d42b9d4edcd 7f679d90bebc24305a468d42b9d4edcd");
 	crypto_cipher_test("cbc(kuznyechik)", 32, 16, 16, "470108c90e9bdaf60cc7446b5bf3c39b 85e5377c2b96abe265aa172958019d02 7d674621724181ef8412ed2774d2ec7d");
 	crypto_cipher_test("ctr(kuznyechik)", 32, 16, 16, "ab6943098fcd63b1d28fed6b26e85edc 7e6677244d2bda780696bfc29f6acfe1 64b18062c785dbb7e95c07378daf75fe");
-	crypto_cipher_test("xts(kuznyechik)", 64, 16, 16, "be6cff9aab3e2448c081c933b15b9f9c 8bb5ed5bd5f812e6b8c1145823ef2d3c 47182fc6159a69ede376806d4112d1cf");
+//	crypto_cipher_test("xts(kuznyechik)", 64, 16, 16, "be6cff9aab3e2448c081c933b15b9f9c 8bb5ed5bd5f812e6b8c1145823ef2d3c 47182fc6159a69ede376806d4112d1cf");
 
 	printf("                   -------------------------------------------\n\n");
 	crypto_cipher_test("ecb(magma)", 32, 8, 0, "a774d4984a0e52d2 cbe025522cf72e0b a774d4984a0e52d2 cbe025522cf72e0b a774d4984a0e52d2 cbe025522cf72e0b");
