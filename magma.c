@@ -25,7 +25,7 @@
  * can be found here: https://www.schneier.com/sccd/GOST-PLU.ZIP
  *
  * All subsequent changes in the code (kernel module API, S-boxes made already
- * rotated, etc.) have been made under the MIT license.
+ * rotated, etc.) have been made under the GPLv2 license.
  */
 
 #include <linux/init.h>

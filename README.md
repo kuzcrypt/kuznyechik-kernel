@@ -46,4 +46,4 @@ sudo hd /dev/sdb -n 112
 
 
 ## License
-This program is licensed under GPL license.
+This program is licensed under GPLv2 license.
