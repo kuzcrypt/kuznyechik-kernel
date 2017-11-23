@@ -1,8 +1,8 @@
 /**
  * kuznyechik.c
  *
- * Copyright (c) 2015 Markku-Juhani O. Saarinen <mjos@iki.fi>
- * Copyright (c) 2017 Vlasta Vesely <vlastavesely@protonmail.ch>
+ * Copyright (c) 2015  Markku-Juhani O. Saarinen <mjos@iki.fi>
+ * Copyright (c) 2017  Vlasta Vesely <vlastavesely@protonmail.ch>
  *
  *
  * This program is free software; you can redistribute it and/or modify
@@ -135,8 +135,6 @@ static uint64_t kuz_pil_dec[16][256][2];
 
 static void kuz_init(void);
 
-/* ************************************************************* */
-
 /* poly multiplication mod p(x) = x^8 + x^7 + x^6 + x + 1 */
 static uint8_t kuz_mul_gf256(uint8_t x, uint8_t y)
 {
@@ -180,10 +178,6 @@ static void kuz_l_inv(union w128_t *w)
 	}
 }
 
-
-/* ************************************************************* */
-
-/* key schedule */
 static int kuznyechik_set_key(struct crypto_tfm *tfm,
 			      const u8 *key, unsigned int keylen)
 {
@@ -243,7 +237,6 @@ static int kuznyechik_set_key(struct crypto_tfm *tfm,
 
 }
 
-/* encrypt the block */
 static void kuznyechik_encrypt(struct crypto_tfm *tfm,
 			       u8 *out, const u8 *in)
 {
@@ -295,7 +288,6 @@ static void kuznyechik_encrypt(struct crypto_tfm *tfm,
 	((uint64_t *) out)[1] = x.q[1] ^ subkeys->ek[9].q[1];
 }
 
-/* decrypt the block */
 static void kuznyechik_decrypt(struct crypto_tfm *tfm,
 			       u8 *out, const u8 *in)
 {
@@ -388,9 +380,6 @@ static void kuznyechik_decrypt(struct crypto_tfm *tfm,
 	((uint64_t *) out)[1] = x.q[1];
 }
 
-
-/* ************************************************************* */
-
 /* initialize lookup tables */
 static void kuz_init()
 {
@@ -427,7 +416,6 @@ static void kuz_init()
 	kuz_initialized = 1;
 }
 
-
 static struct crypto_alg kuznyechik_alg = {
 	.cra_name		=	"kuznyechik",
 	.cra_flags		=	CRYPTO_ALG_TYPE_CIPHER,
@@ -443,18 +431,15 @@ static struct crypto_alg kuznyechik_alg = {
 	.cia_decrypt		=	kuznyechik_decrypt } }
 };
 
-
 static int __init kuznyechik_mod_init(void)
 {
 	return crypto_register_alg(&kuznyechik_alg);
 }
 
-
 static void __exit kuznyechik_mod_fini(void)
 {
 	crypto_unregister_alg(&kuznyechik_alg);
 }
-
 
 module_init(kuznyechik_mod_init);
 module_exit(kuznyechik_mod_fini);
@@ -462,5 +447,3 @@ module_exit(kuznyechik_mod_fini);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("128bit cipher as specified in GOST R 34-12.2015");
 MODULE_ALIAS_CRYPTO("kuznyechik");
-//MODULE_ALIAS_CRYPTO("kuznechik");
-//MODULE_ALIAS_CRYPTO("grasshopper");
