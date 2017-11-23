@@ -106,6 +106,8 @@ static int test_cipher(const char *algname, uint8_t *expected, uint8_t *iv,
 	uint8_t decbuf[512] = {};
 
 	strcpy(sa.salg_name, algname);
+	fprintf(stdout, "testing %s...", algname);
+	fflush(stdout);
 
 	if ((sd[0] = socket(AF_ALG, SOCK_SEQPACKET, 0)) == -1)
 		goto out;
@@ -133,6 +135,8 @@ close_sd1:
 close_sd0:
 	close(sd[0]);
 out:
+	fprintf(stdout, (ret == 0)
+		? "ok\n" : "\x1b[31mfailed\x1b[0m\n");
 	return ret;
 }
 
@@ -191,9 +195,9 @@ int main(int argc, const char *argv)
 	/**********************************************************************/
 
 out:
-	printf((ret == 0)
-		? "\x1b[32mOK\x1b[0m\n"
-		: "\x1b[31mError %d\x1b[0m\n", ret);
+	fprintf(stdout, (ret == 0)
+		? "\n\x1b[32mAll tests have passed.\x1b[0m\n"
+		: "\n\x1b[31mThere are failures!\x1b[0m\n");
 
 	return ret;
 }
