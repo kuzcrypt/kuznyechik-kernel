@@ -1,0 +1,8 @@
+language: c
+compiler:
+  - gcc
+before_install:
+  - sudo apt install dkms
+  - sudo apt install linux-headers-$(uname -r)
+script:
+  - sudo make install && make test
