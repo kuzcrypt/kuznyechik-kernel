@@ -1,10 +1,9 @@
-SHELL=/bin/bash
-
 version = 1.0
 
 obj-m += kuznyechik.o
 obj-m += magma.o
 
+.PHONY: all modules clean install uninstall test test-clean
 
 all:
 	@echo "To install, run \`sudo make install\`"
@@ -12,8 +11,17 @@ all:
 modules:
 	make -C "/lib/modules/$(shell uname -r)/build" M=$(shell pwd) modules
 
-clean:
+clean: test-clean
 	make -C "/lib/modules/$(shell uname -r)/build" M=$(shell pwd) clean
+
+tests/test-ciphers: tests/test-ciphers.c
+	$(CC) tests/test-ciphers.c -o $@
+
+test: tests/test-ciphers
+	tests/test-ciphers
+
+test-clean:
+	rm -f tests/test-ciphers
 
 install:
 	rm -rf "/usr/src/kuznyechik-kernel-"*
