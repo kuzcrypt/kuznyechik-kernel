@@ -5,14 +5,13 @@ obj-m += magma.o
 
 .PHONY: all modules clean install uninstall test test-clean
 
-all:
-	@echo "To install, run \`sudo make install\`"
+all: install
 
 modules:
-	make -C "/lib/modules/$(shell uname -r)/build" M=$(shell pwd) modules
+	make -C /lib/modules/${KVERSION}/build M=$(shell pwd) modules
 
 clean: test-clean
-	make -C "/lib/modules/$(shell uname -r)/build" M=$(shell pwd) clean
+	make -C "/lib/modules/${KVERSION}/build" M=$(shell pwd) clean
 
 tests/test-ciphers: tests/test-ciphers.c
 	$(CC) tests/test-ciphers.c -o $@
@@ -32,6 +31,6 @@ install:
 	dkms install -m "kuznyechik-kernel" -v $(version)
 
 uninstall:
-	modprobe -r kuznyechik magma
+	@modprobe -r kuznyechik magma
 	dkms remove "kuznyechik-kernel/$(version)" --all
 	rm -rf "/usr/src/kuznyechik-kernel-$(version)"
