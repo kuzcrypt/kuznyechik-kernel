@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdint.h>
+#include <unistd.h>
 #include <sys/socket.h>
 #include <linux/if_alg.h>
 
