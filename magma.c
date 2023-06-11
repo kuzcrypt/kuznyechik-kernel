@@ -361,6 +361,8 @@ static void magma_decrypt(struct crypto_tfm *tfm, u8 *out,
 
 static struct crypto_alg magma_alg = {
 	.cra_name		=	"magma",
+	.cra_driver_name	=	"magma_kuznyechik-kernel",
+	.cra_priority		=	111,
 	.cra_flags		=	CRYPTO_ALG_TYPE_CIPHER,
 	.cra_blocksize		=	8,
 	.cra_ctxsize		=	sizeof(magma_subkeys),
@@ -387,6 +389,6 @@ static void __exit magma_mod_fini(void)
 module_init(magma_mod_init);
 module_exit(magma_mod_fini);
 
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("64bit cipher as specified in GOST R 34-12.2015");
 MODULE_ALIAS_CRYPTO("magma");

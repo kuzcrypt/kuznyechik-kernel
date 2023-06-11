@@ -418,6 +418,8 @@ static void kuz_init()
 
 static struct crypto_alg kuznyechik_alg = {
 	.cra_name		=	"kuznyechik",
+	.cra_driver_name	=	"kuznyechik_kuznyechik-kernel",
+	.cra_priority		=	111,
 	.cra_flags		=	CRYPTO_ALG_TYPE_CIPHER,
 	.cra_blocksize		=	16,
 	.cra_ctxsize		=	sizeof(struct kuznyechik_subkeys),
@@ -444,6 +446,6 @@ static void __exit kuznyechik_mod_fini(void)
 module_init(kuznyechik_mod_init);
 module_exit(kuznyechik_mod_fini);
 
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("128bit cipher as specified in GOST R 34-12.2015");
 MODULE_ALIAS_CRYPTO("kuznyechik");
